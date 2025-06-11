@@ -15,7 +15,6 @@ export default function Formelrad() {
     event.preventDefault();
     console.log("handleSubmit");
 
-    // Alle Eingaben zuerst in Floats konvertieren (falls nicht leer)
     const u = values.u !== "" ? parseFloat(values.u) : "";
     const i = values.i !== "" ? parseFloat(values.i) : "";
     const r = values.r !== "" ? parseFloat(values.r) : "";
@@ -55,6 +54,13 @@ export default function Formelrad() {
         ...values,
         i: (u / r).toFixed(2),
         p: ((u * u) / r).toFixed(2),
+      }));
+    } else {
+      // calculate r and p
+      setValues((values) => ({
+        ...values,
+        r: (u / i).toFixed(2),
+        p: (u * i).toFixed(2),
       }));
     }
   };
